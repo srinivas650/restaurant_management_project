@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: sans-serif;
+    background-color: aquamarine;
+    color: greenyellow;
+    line-height: 1.6;
+}
+header{
+    background-color: deeppink;
+    color:white;
+    padding: 20px;
+    text-align: center;
+}
+header nav a{
+    color:white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    transition:color 0.3s ease;
+}
+header nav a:hover{
+    color:yellow;
+}
+.intro{
+    padding:40px 20px;
+    text-align: center;
+}
+.intro h2{
+    font-size: 1.7rem;
+    color:red;
+    margin-bottom: 10px;
+}
+.intro p{
+    font-size: 1.1rem;
+    color:grey;
+}
