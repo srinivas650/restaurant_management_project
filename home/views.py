@@ -5,4 +5,5 @@ from . models import RestaurantInfo
 def home(request):
     restaurant=RestaurantInfo.objects.first()
     return render(request,'index.html',{'restaurant_name':restaurant.name if restaurant else "our Restaurant"})
-def about(request)
+def about(request):
+    return render(request,'about.html')
