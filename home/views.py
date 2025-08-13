@@ -18,3 +18,10 @@ def menu_list(request):
         'menu_list'=menu_items
     }
     return render(request,context)
+def contact(request):
+    contact_info={
+        'phone':'8978556169',
+        'email':'abc@gmail.com',
+        'address':'Bengaluru',
+    }
+    return render(request,'contact.html',contact_info)
