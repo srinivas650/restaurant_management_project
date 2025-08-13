@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.conf import settings
 
 # Create your views here.
 from . models import RestaurantInfo
@@ -25,3 +26,5 @@ def contact(request):
         'address':'Bengaluru',
     }
     return render(request,'contact.html',contact_info)
+def index(request):
+    restaurant
