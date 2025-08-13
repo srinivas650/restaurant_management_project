@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.conf import settings
+from . models import RestaurantInfo
 
 # Create your views here.
 from . models import RestaurantInfo
@@ -27,4 +28,9 @@ def contact(request):
     }
     return render(request,'contact.html',contact_info)
 def index(request):
-    restaurant
+    restaurant=RestaurantInfo.objects.first()
+    context={
+        'restaurant_name':restaurant_name if restaurant else "our restaurant",
+        'phone number':getattr(settings,'RES_PHONE_NUMBER','N/A')
+    }
+    return render(request,'index.html',context)
