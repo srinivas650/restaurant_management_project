@@ -12,12 +12,15 @@
         <h1>Restaurant Management</h1>
         <nav><a href="{% url 'home' %}">Home</a>
         <nav><a href="{% url 'about' %}">About</a>
-        <nav><a href='{% url 'contact' %}'>Contact us</a>
     </header>
     <main>
         {% block content %}
         {% endblock content %}
     </main>
+    <footer>
+        <p>&copy; 2025 My Restaurant</p>
+        <p><strong>opening hours:</strong>Mon-Fri: 11am-9pm,Sat-Sun: 10am-10pm</p>
+    </footer>
     </body>
 </html>
 
