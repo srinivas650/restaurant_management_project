@@ -3,7 +3,7 @@ from django.conf import settings
 from . models import RestaurantInfo
 from . models import Feedback
 from datetime import datetime
-
+from django.db import DatabaseError
 # Create your views here.
 from . models import RestaurantInfo
 def home(request):
@@ -37,10 +37,15 @@ def index(request):
     }
     return render(request,'index.html',context)
 def feedback_view(request):
+    error_message=None
     if request.method=='POST':
         comments=request.POST.get('comments')
         if comments:
-            Feedback.objects.create(comments=comments)
-    return render(request,'feedback.html')
+            try:
+                Feedback.objects.create(comments=comments)
+            except DatabaseError as e:
+                error_message='something went wrong'
+    return render(request,'feedback.html'.{'error_messages':error_message})
+
 def current_year(request):
     return {"current_year":datetime.now().year}
