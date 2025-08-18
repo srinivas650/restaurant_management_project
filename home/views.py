@@ -41,4 +41,4 @@ def feedback_view(request):
         if comments:
             Feedback.objects.create(comments=comments)
     return render(request,'feedback.html')
-def 
+d
