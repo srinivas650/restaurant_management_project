@@ -41,4 +41,5 @@ def feedback_view(request):
         if comments:
             Feedback.objects.create(comments=comments)
     return render(request,'feedback.html')
-d
+def current_year(request):
+    return {"current_year":datetime.now().year}
