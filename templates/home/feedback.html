@@ -3,6 +3,9 @@
 {% endblock title %}
 {% block content %}
 <h2>Leave your feedback</h2>
+{% if error_message %}
+{{ error_message }}
+{% endif %}
 <form method="POST">
     {% csrf_token %}
     <textarea name='comments' rows='15' cols='50' placeholder="Enter ypur feedback"..></textarea><br><br>
