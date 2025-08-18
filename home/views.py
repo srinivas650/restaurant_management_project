@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.conf import settings
 from . models import RestaurantInfo
+from . models import Feedback
 
 # Create your views here.
 from . models import RestaurantInfo
@@ -34,3 +35,10 @@ def index(request):
         'phone number':getattr(settings,'RES_PHONE_NUMBER','N/A')
     }
     return render(request,'index.html',context)
+def feedback_view(request):
+    if request.method=='POST':
+        comments=request.POST.get('comments')
+        if comments:
+            Feedback.objects.create(comments=comments)
+    return render(request,'feedback.html')
+def 
