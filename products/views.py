@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.decorators import api_view
 
 from .models import Item
 from .serializers import ItemSerializer
@@ -24,3 +25,20 @@ class ItemView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def restaurant_menu(request):
+    menu=[
+        {
+            'name':'panner butter masala',
+            'description':'butter based curry with panner(sweet)',
+            'price':250
+        }
+        {
+            'name':'chicken Biryani',
+            'description':'rice cooked with chicken and spices',
+            'price':'300'
+        }
+
+    ]
+    return response(menu)
