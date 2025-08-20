@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 {% block title %}Home - Restaurant Management {% endblock %}
 {% block content %}
+<h2> Menu</h2>
+{% if menu_items %}
+<ul>
+    {% for item in menu %}
+    <li>{{ item.name }}{{ items.price }}</li>
+    {% endfor %}
+    <ul>
+        {% else %}
+        <p> No menu items availale</p>
+    {% endif %}
+
 <section class="intro">
     <h1>Welcome to {{ restaurant_name }}</h1>
     <p>Call us at :{{ phone_number }}</P>
