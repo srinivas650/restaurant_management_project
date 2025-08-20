@@ -7,8 +7,14 @@ from django.db import DatabaseError
 # Create your views here.
 from . models import RestaurantInfo
 def home(request):
-    restaurant=RestaurantInfo.objects.first()
-    return render(request,'index.html',{'restaurant_name':restaurant.name if restaurant else "our Restaurant"})
+    api_url='http://127.0.0.1:8000/api/menu'
+    try:
+        response=requests.get(api_url)
+        menu_items=response.json()
+        if  response.status_code==200 else []
+    except Exception:
+        menu_items=[]
+    return render(request,'index.html',{'menu_items':menu_items})
 def about(request):
     return render(request,'about.html')
 
