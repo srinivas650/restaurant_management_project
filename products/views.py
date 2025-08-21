@@ -42,3 +42,6 @@ def restaurant_menu(request):
 
     ]
     return response(menu)
+def menu_view(request):
+    items=Item.objects.filter(is_available=True)
+    return render(request,'menu.html',{'menu_items':items})
