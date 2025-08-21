@@ -14,7 +14,11 @@ def home(request):
         if  response.status_code==200 else []
     except Exception:
         menu_items=[]
-    return render(request,'index.html',{'menu_items':menu_items})
+    context={
+        'restaurant_name':settings.RESTAURANT_NAME
+    }
+    return render(request,'home.h')
+
 def about(request):
     return render(request,'about.html')
 
