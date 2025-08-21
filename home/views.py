@@ -15,7 +15,8 @@ def home(request):
     except Exception:
         menu_items=[]
     context={
-        'restaurant_name':settings.RESTAURANT_NAME
+        'restaurant_name':settings.RESTAURANT_NAME,
+        'restaurant_address':settings.RES_PHONE_ADDRESS,
     }
     return render(request,'index.html',context)
 
