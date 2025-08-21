@@ -17,7 +17,7 @@ def home(request):
     context={
         'restaurant_name':settings.RESTAURANT_NAME
     }
-    return render(request,'home.h')
+    return render(request,'index.html',context)
 
 def about(request):
     return render(request,'about.html')
