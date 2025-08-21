@@ -4,21 +4,26 @@ from . models import RestaurantInfo
 from . models import Feedback
 from datetime import datetime
 from django.db import DatabaseError
+from . import ContactForm
 # Create your views here.
 from . models import RestaurantInfo
 def home(request):
-    api_url='http://127.0.0.1:8000/api/menu'
-    try:
-        response=requests.get(api_url)
-        menu_items=response.json()
-        if  response.status_code==200 else []
-    except Exception:
-        menu_items=[]
-    context={
+    if request.method=='POST':
+        form=ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request,'home.html',{'form':ContactForm()
         'restaurant_name':settings.RESTAURANT_NAME,
         'restaurant_address':settings.RES_PHONE_ADDRESS,
-    }
-    return render(request,'index.html',context)
+        })
+        else:
+            form=ContactForm()
+            return render(request,'home.html',{
+                'form':form,
+                'restaurant_name':settings.RESTAURANT_NAME,
+                'restaurant_address':settings.RES_PHONE_ADDRESS,
+
+            })
 
 def about(request):
     return render(request,'about.html')
