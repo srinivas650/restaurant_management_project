@@ -39,10 +39,15 @@ def menu_list(request):
     }
     return render(request,context)
 def contact(request):
-    contact_info={
-        'phone':'8978556169',
-        'email':'abc@gmail.com',
-        'address':'Bengaluru',
+    if request.method=='POST':
+        form=ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('contact')
+    else:
+        form=ContactForm()
+    return render(request,'contact.html',{'form':form})
+
     }
     return render(request,'contact.html',contact_info)
 def index(request):
