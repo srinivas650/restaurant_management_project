@@ -7,7 +7,7 @@ class Item(models.Model):
     description=models.TextField()
     item_price = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
-    image=model.ImageField(upload_to='menu_images/',blank=True,null=True)
+    image=model.ImageField(upload_to='menuitem_images/',blank=True,null=True)
 
 
     def __str__(self):
