@@ -14,7 +14,11 @@
     </ul>
 </ul>
 <h2>Visit US</h2>
-
+{% if address %}
+<p>{{ address.street }},{{ address.city }},{{ address.state }},{{ address.zipcode }}</p>
+{% else %}
+<p> Address not available</p>
+{% endif %}
 
 <section class="intro">
     <h1>Welcome to {{ restaurant_name }}</h1>
