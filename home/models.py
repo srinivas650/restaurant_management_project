@@ -5,7 +5,7 @@ class RestaurantInfo(models.Model):
     name=models.CharField(max_length=255)
 
 class RestaurantLocation(models.Model):
-    address=models.CharField(max_length=200)
+    street=models.CharField(max_length=200)
     city=models.CharField(max_length=100)
     state=models.CharField(max_length=100)
     zipcode=models.CharField(max_length=20)
