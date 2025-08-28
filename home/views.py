@@ -68,4 +68,5 @@ def current_year(request):
 
 def home1(request):
     menu_items=MenuItem.objects.all()
-    address=Res
+    address=RestaurantLocation.objects.first()
+    return render(request,'index.html',{'menu_items':menu_items,'address':address})
