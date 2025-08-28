@@ -6,7 +6,7 @@ from datetime import datetime
 from django.db import DatabaseError
 from . import ContactForm
 # Create your views here.
-from . models import RestaurantInfo
+from . models import RestaurantInfo,RestaurantLocation
 def home(request):
     if request.method=='POST':
         form=ContactForm(request.POST)
