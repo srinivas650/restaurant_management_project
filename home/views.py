@@ -65,3 +65,7 @@ def feedback_view(request):
 
 def current_year(request):
     return {"current_year":datetime.now().year}
+
+def home1(request):
+    menu_items=MenuItem.objects.all()
+    address=Res
