@@ -2,11 +2,9 @@
 {% block title %}Contact Us{% endblock title %}
 {% block content %}
 <h2>Contact Us</h2>
-<form id='contactForm'>
-    <label for='name'>Name:</label><br>
-    <input type='text' id='name' name='name'><br><br>
-    <label for='email'>Email:</label><br>
-    <input type='email' id='email' name='email'><br><br>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
     <button type='submit'>Submit</button>
 </form>
 <script>
