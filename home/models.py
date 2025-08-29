@@ -9,6 +9,7 @@ class RestaurantLocation(models.Model):
     city=models.CharField(max_length=100)
     state=models.CharField(max_length=100)
     zipcode=models.CharField(max_length=20)
+    opening_hours=models.JSONField(default=dict)
 
 class Feedback(models.Model):
     comments=models.TextField()
