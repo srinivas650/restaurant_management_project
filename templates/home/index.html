@@ -19,6 +19,17 @@
 {% else %}
 <p> Address not available</p>
 {% endif %}
+{% if address.opening_hours %}
+<h2>opening_hours</h2>
+<ul>
+    {% for day,time in address.opening_hours.items %}
+    <li>
+        <span class="{% if day===now|date:'1' %}highlight{% endif %}">
+            {{ day }}:{{ time }}
+        </span>
+    </li>
+</ul>
+{% endif %}
 
 <section class="intro">
     <h1>Welcome to {{ restaurant_name }}</h1>
