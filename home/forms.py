@@ -3,4 +3,10 @@ from . models import Contact
 class ContactForm(forms.ModelsForm):
     class Meta:
         model=Contact
-        fields=['name','email']
+        fields=['name','email','message']
+    
+    def clean_mesage(self):
+        message=self.cleaned_data.get('message')
+        if len(message)<10:
+            raise forms.validationError('message must be at least 10 characters')
+        return message
