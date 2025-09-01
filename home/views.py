@@ -5,7 +5,10 @@ from . models import Feedback
 from datetime import datetime
 from django.db import DatabaseError
 from . import ContactForm
+from django.core.mail. import send_mail
+from django.contrib import messages
 # Create your views here.
+
 from . models import RestaurantInfo,RestaurantLocation
 def home(request):
     if request.method=='POST':
@@ -43,6 +46,15 @@ def contact(request):
         form=ContactForm(request.POST)
         if form.is_valid():
             name=form.cleaned_data['name']
+            email=form.cleaned_data['message']
+            subject=f"New Contact Form Submission from {name}"
+            body=f"Message from {name} {{email}:\n\n{message}}"
+            send_mail(subject,body,email,['restaurant@example.com'],fail_silently=False,)
+            messages.success(request,"your message has been sent successfully ")
+            return redirect('contact')
+    else:
+        form=ContactForm()
+    return render(request,'contact.html',{'form':form}) 
 def index(request):
     restaurant=RestaurantInfo.objects.first()
     context={
