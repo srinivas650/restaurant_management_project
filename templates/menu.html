@@ -10,6 +10,11 @@
     <li>
         <h3>{{ item.name }}-{{ item.price }}</h3>
         <p>{{ item.description }}</p>
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="{{ item.name }}"width='200'>
+        {% else %}
+        <p>No image</p>
+        {% endif %}
     </li>
     {% endfor %}
 </ul>
