@@ -80,3 +80,11 @@ def home1(request):
     menu_items=MenuItem.objects.all()
     address=RestaurantLocation.objects.first()
     return render(request,'index.html',{'menu_items':menu_items,'address':address})
+
+def home_view(request):
+    query=request.GET.get('q')
+    if query:
+        items=MenuItem.objects.filter(name__icontains=query)
+    else:
+        items=MenuItem.objects.all()
+    return render(request.'home.html',{"items":items.'query':query})
