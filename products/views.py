@@ -45,3 +45,9 @@ def restaurant_menu(request):
 def menu_view(request):
     items=Item.objects.filter(is_available=True)
     return render(request,'menu.html',{'menu_items':items})
+
+def hom_view(request):
+    cart_count=0
+    if request.user.is_authenticated:
+        cart_count=CartItem.objects.filter(user=request.user).aggregate(total=models.Sum('quantity'))['total']or 0
+    return render(request,'menu.item',{'cart_count':cart_count})
