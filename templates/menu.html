@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+<h1>Our Menu</h1>
+<form method="get" action="">
+    <input type='text' name="q" palceholder='search menu...' value="{{ query|default:' '}}">
+    <button type="submit">search</button>
 {% if menu_items %}
 <ul>
     {% for item in menu_items %}
