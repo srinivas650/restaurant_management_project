@@ -88,3 +88,9 @@ def home_view(request):
     else:
         items=MenuItem.objects.all()
     return render(request.'home.html',{"items":items.'query':query})
+
+def faq_view(request):
+    faqs=[
+        {"abx":"what is abc"},
+    ]
+    return render(request,"faq.html",{"faqs":faqs})
