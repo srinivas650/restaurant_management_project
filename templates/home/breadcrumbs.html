@@ -1,7 +1,9 @@
 {% block extends 'base.html' %}
+{% block content %}
 <nav class="breadcrumbs">
     <a href="{% url 'home'%}">Home</a>
     {% for name, url in breadcrumbs %}
         <a href="{{ url }}">{{ name }}</a>
     {% endfor %}
 </nav>
+{% endblock content %}
