@@ -19,5 +19,6 @@ class Contact(models.Model):
     name=models.CharField(max_length=100)
     email=models.EmailField()
     mesaage=models.TextField()
+    phone
     created_at=models.DateTimeField(auto_now_add=True)
     
