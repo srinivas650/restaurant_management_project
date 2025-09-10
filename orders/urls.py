@@ -2,5 +2,5 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path('order',views.order)
+    path('order',views.order_confirmation,name='orderconfirmation'),
 ]
