@@ -94,3 +94,6 @@ def faq_view(request):
         {"abx":"what is abc"},
     ]
     return render(request,"faq.html",{"faqs":faqs})
+
+def privacy_policy(request):
+    return render(request,'privacy_policy.html')
