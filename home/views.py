@@ -7,6 +7,7 @@ from django.db import DatabaseError
 from . import ContactForm
 from django.core.mail. import send_mail
 from django.contrib import messages
+from . forms import FeedbackForm
 # Create your views here.
 
 from . models import RestaurantInfo,RestaurantLocation
@@ -65,13 +66,13 @@ def index(request):
 def feedback_view(request):
     error_message=None
     if request.method=='POST':
-        comments=request.POST.get('comments')
-        if comments:
-            try:
-                Feedback.objects.create(comments=comments)
-            except DatabaseError as e:
-                error_message='something went wrong'
-    return render(request,'feedback.html'.{'error_messages':error_message})
+        form=FeedbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+        else:
+            form=FeedbackForm()
+        return render(request,'feedback.html'.{'form':form})
+
 
 def current_year(request):
     return {"current_year":datetime.now().year}
