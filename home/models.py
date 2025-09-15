@@ -12,6 +12,7 @@ class RestaurantLocation(models.Model):
     opening_hours=models.JSONField(default=dict)
 
 class Feedback(models.Model):
+    name=models.CharField(max_length=100)
     comments=models.TextField()
     submitted_at=models.DateTimeField(auto_now_add=True)
     
