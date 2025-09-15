@@ -10,3 +10,8 @@ class ContactForm(forms.ModelsForm):
         if len(message)<10:
             raise forms.validationError('message must be at least 10 characters')
         return message
+
+class FeedbackForm(forms.ModelsForm):
+    class Meta:
+        models=Feedback
+        fields='_all_'
