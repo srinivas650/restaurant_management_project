@@ -19,7 +19,7 @@ class Feedback(models.Model):
 class Contact(models.Model):
     name=models.CharField(max_length=100)
     email=models.EmailField()
-    mesaage=models.TextField()
+    mesaage=models.TextField(blank=True,null=True)
     phone=models.IntegerField(max_length=10)
     created_at=models.DateTimeField(auto_now_add=True)
     
