@@ -13,6 +13,9 @@ from . serializers import RestaurantInfoSerializer
 # Create your views here.
 
 from . models import RestaurantInfo,RestaurantLocation
+class RestaurantInfoListAPIView(ListAPIView):
+    queryset=MenuCategory.objects.all()
+    serializer_class=RestaurantInfoSerializer
 def home(request):
     if request.method=='POST':
         form=ContactForm(request.POST)
