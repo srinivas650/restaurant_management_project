@@ -8,6 +8,8 @@ from . import ContactForm
 from django.core.mail. import send_mail
 from django.contrib import messages
 from . forms import FeedbackForm
+
+from . serializers import RestaurantInfoSerializer
 # Create your views here.
 
 from . models import RestaurantInfo,RestaurantLocation
