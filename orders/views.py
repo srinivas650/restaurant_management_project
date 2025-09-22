@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from . models import Order
+from . serializers import OrderSerializer
 
 # Create your views here.
 def order_confirmation(request):
@@ -8,3 +12,11 @@ def order_confirmation(request):
     }
     return render(request,'order_confirmation.html',context)
     
+class OrderHistoryView(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self,request):
+        orders=Order.objects.filter(user=request.user).order_by('-order_date')
+        serializer=OrderSerializer(orders,many=True)
+    return Response(serializer.data)
+
+
