@@ -51,3 +51,14 @@ def hom_view(request):
     if request.user.is_authenticated:
         cart_count=CartItem.objects.filter(user=request.user).aggregate(total=models.Sum('quantity'))['total']or 0
     return render(request,'menu.item',{'cart_count':cart_count})
+
+
+    class MenuItemByCategory(APIView):
+        def get(self,request):
+            category=request.query_params.get("category")
+
+            if not category:
+                return Response({"error":"category paramter is required."},status=status.HTTP_400_BAD_REQUEST)
+            items=MenuItems.objects.filter(category__name__iex,act=category)
+            serializer=MenuItemSerializer(items,many=True)
+            return  Response(serializer.data,status=status.HTTP_200_OK)
