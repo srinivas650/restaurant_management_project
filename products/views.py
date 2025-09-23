@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAdminUser
 
 from .models import Item
 from .serializers import ItemSerializer
@@ -62,3 +63,14 @@ def hom_view(request):
             items=MenuItems.objects.filter(category__name__iex,act=category)
             serializer=MenuItemSerializer(items,many=True)
             return  Response(serializer.data,status=status.HTTP_200_OK)
+
+class MenuItemsViewSet(viewsets.ModelViewSet):
+    queryset=MenuItems.objects.all()
+    serializer_class=MenuItemsSerializer
+    permission_classes=[IsAdminUser]
+
+    def update(self,request,*args,**kwargs):
+        try:
+            return super().update(request,*args,**kwargs)
+        except Exception as e:
+            return Response({"error":str(e)},status=status.HTTP_400_BAD_REQUEST)
