@@ -74,3 +74,19 @@ class MenuItemsViewSet(viewsets.ModelViewSet):
             return super().update(request,*args,**kwargs)
         except Exception as e:
             return Response({"error":str(e)},status=status.HTTP_400_BAD_REQUEST)
+
+class MenuItemsSearchViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset=MenuItems.objects.all()
+    serializer_class=MenuItemSerializer
+    pagination_class=MenuItemsPagination
+
+    def list(self,request,*args,**kwargs):
+        search_query=request.query_params.get("search",None)
+        if search_query:
+            self.queryset=self.queryset.filter(name__icontains=search_query)
+        page=self.paginate_queryset(self.queryset)
+        if page is not None:
+            serializer=self.get_serializer(page,many=True)
+            return  self.get_paginated_response(serializer.data)
+        serializer=self.get_serializer(self.queryset,many=True)
+        return Response(serializer.data,status=status.HTTP_200_OK)
