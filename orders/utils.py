@@ -26,3 +26,6 @@ def is_valid_email(email:str)->bool:
         except Exception as e:
             logger.error(f'Email validation error:{e}')
             return False
+def get_daily_sales_total(target_date:date):
+    sales_data=(order.objects.filter(created_at__date=target_date).aggregate(total_sum=Sum('total_price')))
+    return sales_data['total_sum'] or 0
