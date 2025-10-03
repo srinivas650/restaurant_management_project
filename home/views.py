@@ -103,3 +103,12 @@ def faq_view(request):
 
 def privacy_policy(request):
     return render(request,'privacy_policy.html')
+
+class TableListAPIView(generics.ListAPIView):
+    queryset=Table.objects.all()
+    serializer_class=TableSerializer
+
+class TableDetailAPIView(generics.RetrieveAPIView):
+    queryset=Table.objects.all()
+    serializer_class=TableSerializer
+    
