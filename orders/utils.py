@@ -29,3 +29,13 @@ def is_valid_email(email:str)->bool:
 def get_daily_sales_total(target_date:date):
     sales_data=(order.objects.filter(created_at__date=target_date).aggregate(total_sum=Sum('total_price')))
     return sales_data['total_sum'] or 0
+
+def is_restaurant_open():
+    now=datetime.now()
+    current_day=now.weekday()
+    current_time=now.time()
+    opening_hours={
+        0: time(9,0),time(22,0)),
+    }
+    open_time, close_time=opening_hours[current_day]
+    return open_time<=current_time<=close_time
