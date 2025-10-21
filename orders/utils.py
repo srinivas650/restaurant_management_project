@@ -2,7 +2,8 @@ import string
 import logging from email.utils import parseaddr
 import re
 import secrets
-from . models import Coupon
+from . models import Coupon 
+from . models import Order
 def generate_coupon_code(length=10):
     characters=string.ascii_uppercase+string.digits
     while True:
@@ -39,3 +40,12 @@ def is_restaurant_open():
     }
     open_time, close_time=opening_hours[current_day]
     return open_time<=current_time<=close_time
+
+
+def generate_unique_order_id(length=8):
+    characters=string.ascii_uppercase+string.digits
+    while True:
+        order_id=''.join(secrets.choice(charcters) for _ in range(length))
+        if not Order.objects.filter(order_id=order_id).exists():
+            return order_id
+
