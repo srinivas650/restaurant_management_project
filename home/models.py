@@ -22,4 +22,6 @@ class Contact(models.Model):
     mesaage=models.TextField(blank=True,null=True)
     phone=models.IntegerField(max_length=10)
     created_at=models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f'message from {self.name}({self.email})'
     
